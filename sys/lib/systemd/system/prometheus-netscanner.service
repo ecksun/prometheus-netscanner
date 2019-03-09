@@ -4,6 +4,7 @@ Description=Scan the network for hosts and expose them to prometheus
 [Service]
 User=promscan
 Group=promscan
+EnvironmentFile=/etc/prometheus-netscanner/environment
 PrivateTmp=yes
 StateDirectory=promscan
 ConfigurationDirectory=prometheus-netscanner
