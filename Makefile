@@ -56,6 +56,10 @@ $(PACKAGE_DIR).deb: $(PACKAGE_DIR)
 	chmod 755 $(PACKAGE_DIR)/DEBIAN/prerm
 	fakeroot dpkg-deb --build "${PACKAGE_DIR}"
 
+.PHONY: release
+release: clean $(PACKAGE_DIR).deb
+	hub release create --attach="$(PACKAGE_DIR).deb" "$(VERSION)"
+
 .PHONY: clean
 clean:
 	rm -rf "$(OUT_DIR)"
