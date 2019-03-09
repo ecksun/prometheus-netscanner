@@ -2,8 +2,7 @@
 .SUFFIXES:
 
 NAME=prometheus-netscanner
-# VERSION=$(shell git describe --always --match v[0-9]* HEAD | cut -c2-)
-VERSION=0.0.1
+VERSION=$(shell git describe --always --match v[0-9]* HEAD | cut -c2-)
 OUT_DIR=build
 PACKAGE_DIR=$(OUT_DIR)/$(NAME)-$(VERSION)
 
