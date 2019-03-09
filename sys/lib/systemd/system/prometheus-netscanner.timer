@@ -1,0 +1,9 @@
+[Unit]
+Description=Scan the network every minute for new hosts
+
+[Timer]
+OnStartupSec=60s
+OnUnitInactiveSec=60s
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,6 @@
+Package: prometheus-netscanner
+Architecture: all
+Maintainer: linus <linus@noomi.com>
+Depends: bash, arp-scan (>= 1.9.2), moreutils, jq
+Description: Scan the network for hosts and export them as a prometheus host
+ file

@@ -1,0 +1,9 @@
+[Unit]
+Description=Scan the network for hosts and expose them to prometheus
+
+[Service]
+User=promscan
+Group=promscan
+PrivateTmp=yes
+StateDirectory=promscan
+ExecStart=/usr/bin/scan.sh

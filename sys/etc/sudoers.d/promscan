@@ -1,0 +1,1 @@
+promscan ALL=NOPASSWD: /usr/sbin/arp-scan
