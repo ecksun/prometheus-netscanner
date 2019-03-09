@@ -6,4 +6,5 @@ User=promscan
 Group=promscan
 PrivateTmp=yes
 StateDirectory=promscan
+ConfigurationDirectory=prometheus-netscanner
 ExecStart=/usr/bin/scan.sh
