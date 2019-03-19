@@ -16,6 +16,7 @@ set -e
 
 case "$1" in
     configure)
+    mkdir -p /etc/prometheus-netscanner
     if ! getent group promscan >/dev/null; then
       addgroup --quiet --system promscan
     fi
