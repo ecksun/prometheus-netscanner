@@ -6,6 +6,13 @@ User=promscan
 Group=promscan
 EnvironmentFile=/etc/prometheus-netscanner/environment
 PrivateTmp=yes
+ExecStart=/usr/bin/scan.sh
+
+# For newer systemd versions >= 235
 StateDirectory=promscan
 ConfigurationDirectory=prometheus-netscanner
-ExecStart=/usr/bin/scan.sh
+
+# For older systemd versions
+PermissionsStartOnly=true
+ExecStartPre=/bin/mkdir -p /var/lib/promscan
+ExecStartPre=/bin/chown promscan:promscan /var/lib/promscan
