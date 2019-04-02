@@ -9,7 +9,7 @@ HOST_FILTER="${HOST_FILTER:-:}"
 scan() {
     scanlog="/tmp/$(date --iso-8601=s).scanlog"
 
-    sudo arp-scan --quiet --plain "$SCAN_NETWORK" | sort | uniq | ts '%FT%TZ' | grep "$HOST_FILTER" | sort > "$scanlog"
+    sudo arp-scan --quiet --plain --localnet --interface "$(get_interface)" | sort | uniq | ts '%FT%TZ' | grep "$HOST_FILTER" | sort > "$scanlog"
 
     touch "$all_hosts"
 
@@ -32,6 +32,15 @@ update_inventory() {
     }
 }]' > /tmp/inventory-tmp.json
     mv /tmp/inventory-tmp.json "$inventory_file"
+}
+
+get_interface() {
+    first_iface=$(ip -o link show up | grep 'link/ether' | awk 'BEGIN { FS=": " } { print $2 }' | head -n 1)
+    if [ -z "$first_iface" ]; then
+        echo >&2 "Could not find any interface to scan"
+        exit 3
+    fi
+    echo "$first_iface"
 }
 
 scan
