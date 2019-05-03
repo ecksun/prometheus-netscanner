@@ -35,6 +35,10 @@ update_inventory() {
 }
 
 get_interface() {
+    if [ -n "$INTERFACE" ]; then
+        echo "$INTERFACE"
+        return 0
+    fi
     first_iface=$(ip -o link show up | grep 'link/ether' | awk 'BEGIN { FS=": " } { print $2 }' | head -n 1)
     if [ -z "$first_iface" ]; then
         echo >&2 "Could not find any interface to scan"
