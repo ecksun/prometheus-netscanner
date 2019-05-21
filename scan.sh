@@ -18,6 +18,11 @@ scan() {
             sed -i "/$line/d" "$all_hosts"
         done
 
+    awk '{ print $2 }' "$scanlog" |\
+        while IFS='' read -r line || [[ -n "$line" ]]; do
+            sed -i "/$line/d" "$all_hosts"
+        done
+
     cat "$scanlog" "$all_hosts" | sponge "$all_hosts"
     rm "$scanlog"
 }
