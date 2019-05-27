@@ -40,7 +40,7 @@ update_inventory() {
 }
 
 get_interface() {
-    if [ -n "$INTERFACE" ]; then
+    if [ -n "${INTERFACE:-}" ]; then
         echo "$INTERFACE"
         return 0
     fi
