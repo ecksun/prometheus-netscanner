@@ -15,7 +15,7 @@ scan() {
 
     awk '{ print $3 }' "$scanlog" |\
         while IFS='' read -r line || [[ -n "$line" ]]; do
-            sed -i "/$line/d" "$all_hosts"
+            sed -i "/ $line /d" "$all_hosts"
         done
 
     awk '{ print $2 }' "$scanlog" |\
