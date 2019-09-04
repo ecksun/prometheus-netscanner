@@ -28,12 +28,12 @@ scan() {
 }
 
 update_inventory() {
-    tr --truncate-set1 '[:alnum:]-:. ' '' < "$all_hosts" | awk '{ printf("%s:4000,%s,%s\n", $2, $2, $3) }' | jq --raw-input --null-input '[inputs | split(",") |
+    tr --truncate-set1 '[:alnum:]-:. ' '' < "$all_hosts" | awk '{ printf("%s:4000,%s:9100,%s,%s\n", $2, $2, $2, $3) }' | jq --raw-input --null-input '[inputs | split(",") |
 {
-    targets: [.[0]],
+    targets: [.[0],.[1]],
     labels: {
-        ip: .[1],
-        instance: .[2],
+        ip: .[2],
+        instance: .[3],
     }
 }]' > /tmp/inventory-tmp.json
     mv /tmp/inventory-tmp.json "$inventory_file"
