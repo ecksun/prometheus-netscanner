@@ -33,7 +33,7 @@ update_inventory() {
     targets: [.[0],.[1]],
     labels: {
         ip: .[2],
-        instance: .[3],
+        mac: .[3],
     }
 }]' > /tmp/inventory-tmp.json
     mv /tmp/inventory-tmp.json "$inventory_file"
